@@ -10,7 +10,8 @@
 <body>
     <?php
         include('config.php');
-        if(isset($_GET['rowid'])){
+        if(isset($_GET['rowid'])&&!empty($_GET['rowid'])){            
+
             $id = $_GET['rowid'];
             $sql = "select * from students where id = $id;";
             $result = $conn->query($sql);
@@ -30,9 +31,9 @@
                 }
             } 
             else {
-                echo "<h1 style =\"color :red;\">Error: </h1>" . $conn->error."</h1>";
+                echo "<h1 style =\"color :red;\">Error: " . $conn->error."</h1>";
             }
-        }
+        
 
        
     ?>
@@ -71,5 +72,11 @@
         <label>Enter date of birth : <br><input type="date" name="dob"value="<?php echo $dob?>"></label><br>
         <input type="submit">
     </form>
+    <?php
+    }
+    else {
+        header('location:StuReport.php?err=1');
+    }
+    ?>
 </body>
 </html>

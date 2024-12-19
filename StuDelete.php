@@ -9,9 +9,16 @@
     <?php
         include('config.php');
         $row = $_GET['rowid'];
-        $sql = "delete from students where Id = $row;";
-        $conn->query($sql);
-        header("location:StuReport.php");
+        if(!empty($_GET['rowid'])){
+            echo $_GET['rowid'];
+            $sql = "delete from students where Id = $row;";
+            $conn->query($sql);
+        }
+        else{
+            header('location:StuReport.php?err=1');
+        }
+        $conn->close();
+        // header("location:StuReport.php");
     ?>
 </body>
 </html>
