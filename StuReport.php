@@ -71,31 +71,40 @@
         <h2>Students</h2>
         <tr>
             <th>id</th>
-            <th>name</th>
-            <th>address</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>grade</th>
+            <th>gender</th>
+            <th>birth</th>
         </tr>
     <?php
         include("config.php");
 
-        // Define the SQL query
-        $sql = "SELECT * FROM students;";
+        
+        $sql = "SELECT id , first_name , last_name , (select name from grades where grades.id = students.grade)grade , gender , dob FROM students;";
 
-        // Execute the query
+        
         $result = $conn->query($sql);
 
-        // Check if the query executed successfully
+        
         if ($result) {
-            // Check if there are rows in the result
+            
             if ($result->num_rows > 0) {
-                // Fetch and display each row
+                
                 while ($row = $result->fetch_assoc()) {
-                    $id = $row['student_id'];
-                    $name = $row['student_name'];
-                    $address = $row['student_address'];
+                    $id = $row['id'];
+                    $first_name = $row['first_name'];
+                    $last_name = $row['last_name'];
+                    $grade = $row['grade'];
+                    $gender = $row['gender']==1?"male":'female';
+                    $dob = $row['dob'];
                     echo "<tr>
                             <td>$id</td>
-                            <td>$name</td>
-                            <td>$address</td>
+                            <td>$first_name</td>
+                            <td>$last_name</td>
+                            <td>$grade</td>
+                            <td>$gender</td>
+                            <td>$dob</td>
                         </tr>";
                 }
             } 
@@ -107,7 +116,7 @@
             echo "Error: " . $conn->error;
         }
 
-        // Close the connection (optional but recommended)
+        
         $conn->close();
     ?>
     </table>
@@ -116,26 +125,25 @@
         <div class="action-container">
             <label for="rowId" style="font-size: 1.2em; font-weight: bold; color: #333;">Enter row id:</label>
             <input type="text" name = "rowid"id="rowId" placeholder="Enter row ID" style="margin-left: 10px;" />
-            <button type="button" class="action-btn insert" onclick="submitForm('StdForm.php')">insert</button>
-            <button type="button" class="action-btn update" onclick="submitForm('update.php')">update</button>
-            <button type="button" class="action-btn delete" onclick="submitForm('delete.php')">delete</button>
+            <button type="button" class="action-btn insert" onclick="submitForm('StuForm.php')">insert</button>
+            <button type="button" class="action-btn update" onclick="submitForm('StuUpdate.php')">update</button>
+            <button type="button" class="action-btn delete" onclick="submitForm('StuDelete.php')">delete</button>
         </div>
 
     </form>
 
     <script>
         function submitForm(action) {
-            if(action === 'delete.php'){
+            if(action === 'StuDelete.php'){
                 if(!confirm('Are you sure you want to delete this row?')){
                     return;
                 }
             }
             const form = document.getElementById('myForm');
-            form.action = action; // Dynamically set form action
-            form.method = 'GET'; // Or 'GET' depending on your needs
+            form.action = action; 
+            form.method = 'GET'; 
             form.submit();
         }
     </script>
 </body>
 </html>
-mm

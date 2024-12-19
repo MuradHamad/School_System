@@ -9,9 +9,9 @@
     <?php
         include('config.php');
         $row = $_GET['rowid'];
-        $sql = "delete from students where student_Id = $row;";
+        $sql = "delete from students where Id = $row;";
         $conn->query($sql);
-        header("location:report.php");
+        header("location:StuReport.php");
     ?>
 </body>
 </html>

@@ -7,7 +7,11 @@
 </head>
 <body>
     <?php
-        $conn = new mysqli('localhost','root','','university');
+        $server = "localhost";
+        $user = "root";
+        $pass = "";
+        $database = "school";
+        $conn = new mysqli($server,$user,$pass,$database);
         if($conn->connect_error){
             die("connection failed.");
         }
