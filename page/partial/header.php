@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/layout.php">
+<link rel="stylesheet" href="..\..\styles\header.php">
 <div class="header">
-    <h1>Welcome to My Website</h1>
+    <h1><?php echo SYSTEM_NAME ?></h1>
 </div>
