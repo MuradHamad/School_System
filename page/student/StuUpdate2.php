@@ -8,12 +8,12 @@
 </head>
 <body>
     <?php
-        include('config.php');
+        include('../../config.php');
         $id = $_GET['id'];
         $first_name = $_GET['first_name'];
         $last_name = $_GET['last_name'];
         $grade = $_GET['grade'];
-        $gender = $_GET['gender']==1?"male":'female';
+        $gender = $_GET['gender'];
         $dob = $_GET['dob'];
         $sql = "update students 
                 set  first_name = '$first_name' , last_name = '$last_name' ,grade = '$grade' ,gender = '$gender' ,dob = '$dob' 
