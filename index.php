@@ -11,7 +11,8 @@
 </head>
 
 <body>
-  <?php include("page/partial/header.php") ?>
+  <?php include("page/partial/header.php");
+  include("page/partial/nav.html") ?>
 </body>
 
 </html>
