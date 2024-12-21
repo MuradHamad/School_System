@@ -26,9 +26,11 @@ h2 {
 
 /* Table styling */
 table {
-  width: 100%;
-  border-collapse: collapse;
+  width: auto; /* Adjusts the table width to the content */
+  max-width: 100%; /* Prevents the table from becoming too wide */
   margin-top: 10px;
+  border-collapse: collapse;
+  margin: 0 auto; /* Center the table horizontally */
 }
 
 /* Table header row */
@@ -39,10 +41,13 @@ thead tr {
   font-weight: bold;
 }
 
-th,
-td {
+/* Table cells */
+th, td {
   padding: 12px 15px;
   border: 1px solid #ddd;
+  text-align: center; /* Center data horizontally */
+  vertical-align: middle; /* Center data vertically */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 /* Alternate row styling */
@@ -55,17 +60,3 @@ tbody tr:hover {
   background-color: #d9edf7;
   cursor: pointer;
 }
-
-/* Table responsiveness */
-@media screen and (max-width: 768px) {
-  table {
-    font-size: 12px;
-  }
-
-  th,
-  td {
-    padding: 8px;
-  }
-}
-
-
