@@ -11,16 +11,8 @@
 </head>
 
 <body>
-  <?php include("page/partial/header.php") ?>
-
-  <form method="post">
-    <h2>Log in</h2>
-    <label>Enter Name: <input type="text" name="name"></label>
-    <label>Enter Password: <input type="text" name="password"></label>
-    <button type="button" class="action-btn log-in">Log in</button>
-
-    <button type="button" class="action-btn sign-up">Sign Up</button>
-  </form>
+  <?php include("page/partial/header.php");
+  include("page/partial/nav.html") ?>
 </body>
 
 </html>
