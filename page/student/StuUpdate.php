@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../styles/../../styles/form.css">
+    <link rel="stylesheet" href="../../styles/form.css">
 
 </head>
 
 <body>
     <?php
-    include('../../../../config.php');
+    include('../../config.php');
     if (isset($_GET['rowid']) && !empty($_GET['rowid'])) {
 
         $id = $_GET['rowid'];
@@ -25,7 +25,7 @@
                     $last_name = $row['last_name'];
                     $grade = $row['grade'];
                     $dob = $row['dob'];
-                    $gender = $row['gender'] == 1 ? "male" : "female";
+                    $gender = $row['gender'];
                 }
             } else {
                 echo "No records found.";
@@ -68,10 +68,8 @@
             </label><br>
             <label>Enter gender <br>
                 <select name="gender">
-                    <option value="1" <?php if ($gender == "male")
-                        echo "selected" ?>>male</option>
-                        <option value="0" <?php if ($gender == "female")
-                        echo "selected" ?>>female</option>
+                    <option value="1" <?php if ($gender == 1) echo "selected" ?>>male</option>
+                        <option value="0" <?php if ($gender == 0) echo "selected" ?>>female</option>
                     </select>
 
                 </label><br>
