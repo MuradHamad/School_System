@@ -16,7 +16,7 @@
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) { ?>
             <form method="post">
-                <h2>Students Form</h2>
+                <h2>Students Update</h2>
                 <label>Enter student first name : <input required type="text" name="first_name"
                         value="<?php echo $row["first_name"] ?>"></label>
                 <label>Enter student last name : <input required type="text" name="last_name"

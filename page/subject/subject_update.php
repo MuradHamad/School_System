@@ -16,7 +16,7 @@
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) { ?>
             <form method="post">
-                <h2>Subjects Form</h2>
+                <h2>Subjects Update</h2>
                 <label>Enter subject name : <input required type="text" name="name" value="<?php echo $row["name"] ?>"></label>
                 <input type="hidden" name="edited" value="1">
                 <input type="submit">

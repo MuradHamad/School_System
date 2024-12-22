@@ -16,7 +16,7 @@
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) { ?>
             <form method="post">
-                <h2>Marks Form</h2>
+                <h2>Marks Update</h2>
                 <label>Select student:
 
                     <select name="student_id">
