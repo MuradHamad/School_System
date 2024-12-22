@@ -30,7 +30,6 @@
                 $conn->query($sql);
                 $conn->close();
                 header("location:grade_report.php");
-
             }
 
         }
