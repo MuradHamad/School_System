@@ -25,8 +25,8 @@
             <?php
             if (isset($_POST["edited"])) {
                 $sql = "update subjects
-            set  name = '{$_POST["name"]}' 
-            where id = {$row["id"]}";
+                        set  name = '{$_POST["name"]}' 
+                        where id = {$row["id"]}";
                 $conn->query($sql);
                 $conn->close();
                 header("location:subject_report.php");
