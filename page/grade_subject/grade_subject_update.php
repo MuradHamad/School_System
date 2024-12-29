@@ -4,25 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Update</title>
+    <title>Grade & Subject Update</title>
     <link rel="stylesheet" href="../../styles/form.css">
 </head>
 
 <body>
     <?php
     include('../../config.php');
-    $sql = "select * from teachers where teachers.id = {$_GET['rowid']};";
+    $sql = "select * from grades_subjects where grades_subjects.id = {$_GET['rowid']};";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) { ?>
             <form method="post">
-                <h2>Teachers Update</h2>
-                <label>Enter teacher first name : <input required type="text" name="first_name"
-                        value="<?php echo $row["first_name"] ?>"></label>
-                <label>Enter teacher last name : <input required type="text" name="last_name"
-                        value="<?php echo $row["last_name"] ?>"></label>
-                <label>Select subject
+                <h2>Grades & Subjects Update</h2>
+                <label>Select grade
+                    <select required name="grade">
+                        <?php
+                        $sql = "select * from grades";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            while ($inRow = $result->fetch_assoc()) {
+                                echo "<option value='{$inRow["id"]}'" . (($row["grade"] == $inRow["id"]) ? "selected" : "") . ">{$inRow["name"]}</option>";
+                            }
+                        }
+                        ?>
+                    </select>
 
+                </label>
+
+                <label>Select subject
                     <select required name="subject">
                         <?php
                         $sql = "select * from subjects";
@@ -37,19 +47,18 @@
 
                 </label>
 
-
                 <input type="hidden" name="edited" value="1">
                 <input type="submit">
             </form>
 
             <?php
             if (isset($_POST["edited"])) {
-                $sql = "update teachers
-            set  first_name = '{$_POST["first_name"]}' , last_name = '{$_POST["last_name"]}' ,subject = '{$_POST["subject"]}'  
+                $sql = "update grades_subjects
+            set  grade = '{$_POST["grade"]}' , subject = '{$_POST["subject"]}'
             where id = {$row["id"]}";
                 $conn->query($sql);
                 $conn->close();
-                header("location:teacher_report.php");
+                header("location:grade_subject_report.php");
 
             }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include("../../config.php"); ?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../styles/report.css">
     <link rel="stylesheet" href="../../styles/input.php">
 </head>
+<?php include("../../config.php"); ?>
 
 <body>
 

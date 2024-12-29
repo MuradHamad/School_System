@@ -10,18 +10,19 @@
 
 <body>
     <?php
+    $grade = $_GET['grade'];
     include('../../config.php');
     $sql = "select * from marks where marks.id = {$_GET['rowid']};";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) { ?>
             <form method="post">
-                <h2>Marks Form</h2>
+                <h2>Marks Update</h2>
                 <label>Select student:
 
                     <select name="student_id">
                         <?php
-                        $sql = "select * from students";
+                        $sql = "select * from students where grade = $grade;";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while ($inRow = $result->fetch_assoc()) {
@@ -33,15 +34,18 @@
                     </select>
 
                 </label>
+                <label>
+                    Enter Grade : <input type="text"name = 'grade'value =<?php echo $grade?> readonly>
+                </label>
                 <label>Select subject:
 
                     <select name="subject">
                         <?php
-                        $sql = "select * from subjects";
+                        $sql = "select grade , subject , (select name from subjects s where s.id = gs.subject)name  from grades_subjects gs where grade = $grade;";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             while ($inRow = $result->fetch_assoc()) {
-                                echo "<option value='{$inRow["id"]}'" . (($row["subject"] == $inRow["id"]) ? "selected" : "") . ">{$inRow["name"]}</option>";
+                                echo "<option value='{$inRow["subject"]}'" . (($row["subject"] == $inRow["subject"]) ? "selected" : "") . ">{$inRow["name"]}</option>";
                             }
                         }
                         ?>
@@ -96,7 +100,7 @@
             where id = {$row["id"]}";
                 $conn->query($sql);
                 $conn->close();
-                header("location:mark_report.php");
+                header("location:mark_report.php?grade=$grade");
 
             }
 

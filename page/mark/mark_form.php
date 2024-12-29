@@ -12,12 +12,13 @@
 <body>
     <?php
     include("..\..\config.php");
-
+    
+    $grade = $_GET['grade'];
     if (isset($_GET['student_id']) && isset($_GET['subject']) && isset($_GET['year']) && isset($_GET['semester']) && isset($_GET['month']) && isset($_GET['mark'])) {
         $sql = "insert into marks 
-            (student_id , subject , year , semester , month,mark) values ('{$_GET['student_id']}','{$_GET['subject']}','{$_GET['year']}','{$_GET['semester']}','{$_GET['month']}','{$_GET['mark']}');";
+        (student_id ,grade, subject , year , semester , month,mark) values ('{$_GET['student_id']}',$grade,'{$_GET['subject']}','{$_GET['year']}','{$_GET['semester']}','{$_GET['month']}','{$_GET['mark']}');";
         if ($conn->query($sql) === true) {
-            header('location:mark_report.php');
+            header("location:mark_report.php?grade=$grade");
         } else {
             echo '<h1 style= "color = red;">0 rows inserted</h1>';
         }
@@ -29,7 +30,8 @@
             <select required name="student_id">
                 <option value="" selected disabled>--Select</option>
                 <?php
-                $sql = "select * from students;";
+                
+                $sql = "select * from students where grade = $grade;";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -41,19 +43,22 @@
                 }
                 ?>
             </select>
-        </label>
 
+        </label>
+        <label>
+            Enter Grade : <input type="text"name = 'grade'value =<?php echo $grade?> readonly>
+        </label>
         <label>Select subject:
             <select required name="subject">
                 <option value="" selected disabled>--Select</option>
                 <?php
-                $sql = "select * from subjects;";
+                $sql = "select id, grade , subject , (select name from subjects s where s.id = gs.subject)name  from grades_subjects gs where grade = $grade;";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $id = $row['id'];
+                        $subject = $row['subject'];
                         $name = $row['name'];
-                        echo "<option value=\"$id\">$name</option>";
+                        echo "<option value=\"$subject\">$name</option>";
 
                     }
                 }
