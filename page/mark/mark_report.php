@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="../../styles/input.php">
 </head>
 <?php
-    include("../../config.php"); 
-    $grade = $_GET['grade'];
+include("../../config.php");
+$grade = $_GET['grade'];
 ?>
 
 <body>
 
     <table>
-        <h2>Marks <a type="button" class="action-btn insert" href="mark_form.php?grade=<?php echo $grade?>">+</a></h2>
+        <h2>Marks <a type="button" class="action-btn insert" href="mark_form.php?grade=<?php echo $grade ?>">+</a></h2>
         <tr>
             <th>id</th>
             <th>grade</th>
-            <th>student_id</th>
+            <th>student_name</th>
             <th>subject</th>
             <th>year</th>
             <th>semester</th>
