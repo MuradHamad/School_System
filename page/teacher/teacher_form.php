@@ -12,7 +12,7 @@
 <body>
     <?php
     include("..\..\config.php");
-
+    buildBreadcrumb('teacher_form.php');
     if (isset($_GET['first_name']) && isset($_GET['last_name']) && isset($_GET['subject'])) {
         $sql = "insert into teachers 
             (first_name , last_name , subject) values ('{$_GET['first_name']}','{$_GET['last_name']}','{$_GET['subject']}');";

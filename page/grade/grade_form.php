@@ -12,6 +12,7 @@
 <body>
     <?php
     include("..\..\config.php");
+    buildBreadcrumb('grade_form.php');
 
     if (isset($_GET['name'])) {
         $sql = "insert into grades 

@@ -11,6 +11,7 @@
 <body>
     <?php
     include('../../config.php');
+    buildBreadcrumb('grade_subject_update.php');
     $sql = "select * from grades_subjects where grades_subjects.id = {$_GET['rowid']};";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

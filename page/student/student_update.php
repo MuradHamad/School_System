@@ -11,6 +11,7 @@
 <body>
     <?php
     include('../../config.php');
+    buildBreadcrumb('student_update.php');
     $sql = "select * from students where students.id = {$_GET['rowid']};";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

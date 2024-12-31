@@ -9,6 +9,7 @@
 <body>
     <?php
         include("..\..\config.php");
+        buildBreadcrumb('mark_select.php');
     ?>
     <form action="mark_report.php">
         <label>Choose Grade : 

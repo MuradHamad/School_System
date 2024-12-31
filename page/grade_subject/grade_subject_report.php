@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../../styles/report.css">
     <link rel="stylesheet" href="../../styles/input.php">
 </head>
-<?php include("../../config.php"); ?>
+<?php include("../../config.php"); 
+buildBreadcrumb('grade_subject_report.php');
+?>
 
 <body>
 

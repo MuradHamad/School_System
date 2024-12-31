@@ -12,7 +12,7 @@
 <body>
     <?php
     include("..\..\config.php");
-
+    buildBreadcrumb('subject_form.php');
     if (isset($_GET['name'])) {
         $sql = "insert into subjects 
             (name) values ('{$_GET['name']}');";

@@ -10,6 +10,7 @@
 </head>
 <?php
 include("../../config.php");
+buildBreadcrumb('mark_report.php');
 $grade = $_GET['grade'];
 ?>
 

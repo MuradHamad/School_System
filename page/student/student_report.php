@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="../../styles/report.css">
     <link rel="stylesheet" href="../../styles/input.php">
 </head>
-<?php include("../../config.php"); ?>
+<?php include("../../config.php");
+    buildBreadcrumb('student_report.php');
+?>
+
 
 <body>
 
@@ -52,13 +55,12 @@
                         </tr>";
             }
         }
-
         $conn->close();
         ?>
     </table>
     <br>
 
-
+    
 
 </body>
 

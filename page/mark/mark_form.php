@@ -12,7 +12,7 @@
 <body>
     <?php
     include("..\..\config.php");
-    
+    buildBreadcrumb('mark_form.php');
     $grade = $_GET['grade'];
     if (isset($_GET['student_id']) && isset($_GET['subject']) && isset($_GET['year']) && isset($_GET['semester']) && isset($_GET['month']) && isset($_GET['mark'])) {
         $sql = "insert into marks 
