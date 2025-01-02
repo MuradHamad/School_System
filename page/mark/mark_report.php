@@ -74,7 +74,11 @@ $grade = $_GET['grade'];
     <br>
 
 
-
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+    </script>
 </body>
 
 </html>

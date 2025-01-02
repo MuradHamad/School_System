@@ -39,7 +39,7 @@ buildBreadcrumb('grade_subject_report.php');
                             <td>{$row['grade']}</td>
                             <td>{$row['subject']}</td>
                             <td>
-                                <a class='action-btn delete' href='grade_subject_delete.php?rowid={$row['id']}'>delete</a>
+                                <a class='action-btn delete' href='grade_subject_delete.php?rowid={$row['id']}' onclick='return confirmDelete()' >delete</a>
                                 <a class='action-btn update' href='grade_subject_update.php?rowid={$row['id']}'>update</a>
                             </td>
                         </tr>";
@@ -52,6 +52,11 @@ buildBreadcrumb('grade_subject_report.php');
     <br>
 
 
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+    </script>
 
 </body>
 

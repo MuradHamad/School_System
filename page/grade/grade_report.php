@@ -7,6 +7,8 @@
     <title>Grade Report</title>
     <link rel="stylesheet" href="../../styles/report.css">
     <link rel="stylesheet" href="../../styles/input.php">
+   
+
 </head>
 <?php 
 include("../../config.php"); 
@@ -27,7 +29,7 @@ buildBreadcrumb('grade_report.php');
 
 
 
-        $sql = "SELECT * from grades";
+        $sql = "SELECT * from grades order by 1";
 
 
         $result = $conn->query($sql);
@@ -38,7 +40,7 @@ buildBreadcrumb('grade_report.php');
                             <td>{$row['id']}</td>
                             <td>{$row['name']}</td>
                             <td>
-                                <a class='action-btn delete' href='grade_delete.php?rowid={$row['id']}'>delete</a>
+                                <a class='action-btn delete' href='grade_delete.php?rowid={$row['id']}'onclick='return confirmDelete()'>delete</a>
                                 <a class='action-btn update' href='grade_update.php?rowid={$row['id']}'>update</a>
                             </td>
 
@@ -52,6 +54,11 @@ buildBreadcrumb('grade_report.php');
     <br>
 
 
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+    </script>
 
 </body>
 

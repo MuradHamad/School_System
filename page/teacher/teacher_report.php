@@ -43,7 +43,7 @@
                             <td>{$row['last_name']}</td>
                             <td>{$row['subject']}</td>
                             <td>
-                                <a class='action-btn delete' href='teacher_delete.php?rowid={$row['id']}'>delete</a>
+                                <a class='action-btn delete' href='teacher_delete.php?rowid={$row['id']}' onclick='return confirmDelete()'>delete</a>
                                 <a class='action-btn update' href='teacher_update.php?rowid={$row['id']}'>update</a>
                             </td>
 
@@ -57,6 +57,11 @@
     <br>
 
 
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+    </script>
 
 </body>
 

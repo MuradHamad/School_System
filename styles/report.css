@@ -1,4 +1,3 @@
-/* General body styling */
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -42,7 +41,8 @@ thead tr {
 }
 
 /* Table cells */
-th, td {
+th,
+td {
   padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: center; /* Center data horizontally */
@@ -51,6 +51,7 @@ th, td {
 }
 
 /* Alternate row styling */
+
 tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
