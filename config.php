@@ -82,13 +82,18 @@
             'teacher_update.php' => ['title' => 'Update Teacher', 'parent' => 'teacher_report.php'],
         ];
         $current_page = 'students';  
-        function buildBreadcrumb($current_page) {
+        function buildBreadcrumb($current_page, $id='') {
             global $pages;
             echo "<ul class='breadcrumb'>";
             $breadcrumb = "";
             while ($current_page) {
                 $page = $pages[$current_page];
-                $breadcrumb = "<li><a href='$current_page'>{$page['title']}</a></li>" . $breadcrumb;
+                if($current_page=='mark_report.php'){
+                    $breadcrumb = "<li><a href='$current_page?grade=$id'>{$page['title']}</a></li>" . $breadcrumb;
+                }
+                else{
+                    $breadcrumb = "<li><a href='$current_page'>{$page['title']}</a></li>" . $breadcrumb;
+                }
                 $current_page = $page['parent'];
             }
             $breadcrumb .= "</ul>";

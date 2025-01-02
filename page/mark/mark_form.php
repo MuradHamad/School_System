@@ -12,8 +12,8 @@
 <body>
     <?php
     include("..\..\config.php");
-    buildBreadcrumb('mark_form.php');
     $grade = $_GET['grade'];
+    buildBreadcrumb('mark_form.php',$grade);
     if (isset($_GET['student_id']) && isset($_GET['subject']) && isset($_GET['year']) && isset($_GET['semester']) && isset($_GET['month']) && isset($_GET['mark'])) {
         $sql = "insert into marks 
         (student_id ,grade, subject , year , semester , month,mark) values ('{$_GET['student_id']}',$grade,'{$_GET['subject']}','{$_GET['year']}','{$_GET['semester']}','{$_GET['month']}','{$_GET['mark']}');";
