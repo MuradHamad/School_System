@@ -17,12 +17,15 @@
     if (isset($_GET['student_id']) && isset($_GET['subject']) && isset($_GET['year']) && isset($_GET['semester']) && isset($_GET['month']) && isset($_GET['mark'])) {
         $sql = "insert into marks 
         (student_id ,grade, subject , year , semester , month,mark) values ('{$_GET['student_id']}',$grade,'{$_GET['subject']}','{$_GET['year']}','{$_GET['semester']}','{$_GET['month']}','{$_GET['mark']}');";
-        if ($conn->query($sql) === true) {
-            header("location:mark_report.php?grade=$grade");
-        } else {
-            echo '<h1 style= "color = red;">0 rows inserted</h1>';
+        try{
+            if ($conn->query($sql) === true) {
+                header("location:mark_report.php?grade=$grade");
+            } 
         }
-    }
+        catch(mysqli_sql_exception $e1){
+                echo '<h1 style= "color : red;">0 rows inserted. Error: Duplicate entry </h1>';
+            }
+        }
     ?>
     <form>
         <h2>Marks Form</h2>
@@ -37,7 +40,12 @@
                     while ($row = $result->fetch_assoc()) {
                         $id = $row['id'];
                         $name = $row['first_name'] . " " . $row['last_name'];
-                        echo "<option value=\"$id\">$name</option>";
+                        if($_GET['student_id']==$id){
+                            echo "<option value=\"$id\" selected>$name</option>";
+                        }
+                        else{
+                            echo "<option value=\"$id\">$name</option>";
+                        }
 
                     }
                 }
@@ -58,7 +66,12 @@
                     while ($row = $result->fetch_assoc()) {
                         $subject = $row['subject'];
                         $name = $row['name'];
-                        echo "<option value=\"$subject\">$name</option>";
+                        if($_GET['subject']==$subject){
+                            echo "<option value=\"$subject\" selected>$name</option>";
+                        }
+                        else{
+                            echo "<option value=\"$subject\">$name</option>";
+                        }
 
                     }
                 }
@@ -66,7 +79,9 @@
             </select>
         </label>
 
-        <label>Enter year: <input required type="number" name="year"></label>
+        <label>Enter year: <input required type="number" name="year"value =<?php 
+        if(isset($_GET['year']))echo $_GET['year']
+        ?>></label>
 
         <label>Select semester:
             <select required name="semester">
@@ -78,7 +93,12 @@
                     while ($row = $result->fetch_assoc()) {
                         $id = $row['id'];
                         $name = $row['name'];
-                        echo "<option value=\"$id\">$name</option>";
+                        if($_GET['semester']==$id){
+                            echo "<option value=\"$id\" selected>$name</option>";
+                        }
+                        else{
+                            echo "<option value=\"$id\">$name</option>";
+                        }
 
                     }
                 }
@@ -95,14 +115,21 @@
                     while ($row = $result->fetch_assoc()) {
                         $id = $row['id'];
                         $name = $row['name'];
-                        echo "<option value=\"$id\">$name</option>";
+                        if($_GET['month']==$id){
+                            echo "<option value=\"$id\" selected>$name</option> ";
+                        }
+                        else{
+                            echo "<option value=\"$id\">$name</option>";
+                        }
 
                     }
                 }
                 ?>
             </select>
         </label>
-        <label>Enter marks:<input required type="number" name="mark"></label>
+        <label>Enter marks:<input required type="number" name="mark" value =<?php 
+        if(isset($_GET['mark']))echo $_GET['mark']
+        ?>></label>
         <input type="submit">
 
     </form>

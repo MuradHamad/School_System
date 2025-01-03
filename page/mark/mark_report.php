@@ -60,7 +60,7 @@ $grade = $_GET['grade'];
                             <td>{$row['month']}</td>
                             <td>{$row['mark']}</td>
                             <td>
-                                <a class='action-btn delete' href='mark_delete.php?rowid={$row['id']}&grade=$grade'>delete</a>
+                                <a class='action-btn delete' href='mark_delete.php?rowid={$row['id']}&grade=$grade'onclick='return confirmDelete()'>delete</a>
                                 <a class='action-btn update' href='mark_update.php?rowid={$row['id']}&grade=$grade'>update</a>
                             </td>
 

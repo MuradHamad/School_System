@@ -17,7 +17,7 @@
                 <option value="" selected disabled>--Select</option>
                 <?php
                 
-                $sql = "select * from grades;";
+                $sql = "select * from grades order by 1;";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {

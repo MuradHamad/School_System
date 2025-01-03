@@ -16,11 +16,13 @@
     if (isset($_GET['grade']) && isset($_GET['subject'])) {
         $sql = "insert into grades_subjects 
             (grade , subject) values ('{$_GET['grade']}','{$_GET['subject']}');";
-        if ($conn->query($sql) === true) {
-            header('location:grade_subject_report.php');
-        } else {
-            echo '<h1 style= "color = red;">0 rows inserted</h1>';
-        }
+            try {
+                if ($conn->query($sql)) {
+                    header('Location: grade_subject_report.php');
+                }
+            } catch (mysqli_sql_exception $e) {
+                echo '<h1 style="color: red;">0 rows inserted. Error: Duplicate entry or invalid data.</h1>';
+            }
     }
     ?>
     <form>
@@ -29,13 +31,18 @@
         <select name="grade" required>
             <option value="" selected disabled>--Select</option>
             <?php
-            $sql = "select * from grades;";
+            $sql = "select * from grades order by 1;";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['id'];
                     $name = $row['name'];
-                    echo "<option value=\"$id\">$name</option>";
+                    if($_GET['grade']==$id){
+                        echo "<option value=\"$id\" selected>$name</option>";
+                    }
+                    else{
+                        echo "<option value=\"$id\">$name</option>";
+                    }
 
                 }
             }
@@ -52,7 +59,12 @@
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['id'];
                     $name = $row['name'];
-                    echo "<option value=\"$id\">$name</option>";
+                    if($_GET['subject']==$id){
+                        echo "<option value=\"$id\" selected>$name</option>";
+                    }
+                    else{
+                        echo "<option value=\"$id\">$name</option>";
+                    }
 
                 }
             }
