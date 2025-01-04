@@ -12,7 +12,7 @@
 
 <body>
   <?php include("page/partial/header.php");
-  include("page/partial/nav.html") ?>
+  include("page/partial/nav.php") ?>
 </body>
 
 </html>

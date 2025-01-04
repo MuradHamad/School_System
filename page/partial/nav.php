@@ -1,3 +1,6 @@
+<?php
+include '../../AccessBySession.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,6 +64,24 @@
         color: #007bff;
         margin-bottom: 10px;
       }
+      .sign-out-link {
+      position: fixed;       
+      bottom: 20px;          
+      right: 20px;           
+      background-color: #007bff; 
+      color: white;          
+      padding: 10px 20px;     
+      border-radius: 5px;    
+      text-decoration: none; 
+      font-weight: bold;     
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+      transition: background-color 0.3s; 
+      }
+
+      .sign-out-link:hover {
+        background-color: #0056b3; 
+      }
+
     </style>
   </head>
   <body>
@@ -90,5 +111,6 @@
         <a href="../grade_subject/grade_subject_report.php">Grade & Subject</a>
       </div>
     </div>
+    <a href="signout.php" class="sign-out-link">Sign Out</a>
   </body>
 </html>

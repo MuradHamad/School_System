@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($users[$username]) && password_verify($password, $users[$username])) {
         $_SESSION['username'] = $username; 
         $_SESSION['loggedin'] = true;     
-        header("Location:page/partial/nav.html"); 
+        header("Location:page/partial/nav.php"); 
         exit();
     } else {
         $_SESSION['loggedin'] = false;
@@ -38,9 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             background-color: #f4f4f4;
         }
         .login-container {
+            width: 350px;
+            height: 250px;
             text-align: center;
             background: #fff;
-            padding: 20px;
+            padding: 100px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -48,12 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             display: block;
             margin: 10px auto;
             padding: 10px;
-            width: 80%;
+            width: 90%;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         button {
-            padding: 10px 20px;
+            padding: 10px;
+            width: 96%;
             border: none;
             background-color: #007BFF;
             color: #fff;

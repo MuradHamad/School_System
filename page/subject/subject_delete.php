@@ -1,4 +1,7 @@
 <?php
+include '../../AccessBySession.php';
+?>
+<?php
 include('../../config.php');
 $sql = "delete from subjects where Id = {$_GET['rowid']};";
 try {
