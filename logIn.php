@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $jsonData = file_get_contents('users.json');
+    $users = json_decode($jsonData, true);
+
+    if (isset($users[$username]) && password_verify($password, $users[$username])) {
+        $_SESSION['username'] = $username; 
+        $_SESSION['loggedin'] = true;     
+        header("Location: dashboard.php"); 
+        exit();
+    } else {
+        $error = "Invalid username or password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,32 +66,11 @@
         .error {
             color: red;
         }
-        .success {
-            color: green;
-        }
     </style>
 </head>
 <body>
 <div class="login-container">
     <h1>Login</h1>
-    <?php
-
-    $error = "";
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $jsonData = file_get_contents('users.json');
-        $users = json_decode($jsonData, true);
-
-        if (isset($users[$username]) && password_verify($password, $users[$username])) {
-            echo "<p class='success'>Login successful! Welcome, $username.</p>";
-        } else {
-            $error = "Invalid username or password.";
-        }
-    }
-    ?>
 
     <?php if (!empty($error)) : ?>
         <p class="error"><?php echo $error; ?></p>
