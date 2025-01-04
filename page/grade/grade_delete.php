@@ -1,4 +1,5 @@
 <?php
+include 'AccessBySession.php';
 include('../../config.php');
 $sql = "delete from grades where Id = {$_GET['rowid']};";
 try {
