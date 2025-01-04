@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2024 at 03:47 PM
+-- Generation Time: Jan 04, 2025 at 06:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,8 +37,18 @@ CREATE TABLE `grades` (
 --
 
 INSERT INTO `grades` (`id`, `name`) VALUES
+(8, 'eighth'),
+(11, 'eleventh'),
+(5, 'Fifth'),
 (1, 'first'),
-(2, 'Second');
+(4, 'forth'),
+(9, 'ninth'),
+(2, 'Second'),
+(7, 'seventh'),
+(6, 'sixth'),
+(10, 'tenth'),
+(3, 'Third'),
+(12, 'twelfth');
 
 -- --------------------------------------------------------
 
@@ -58,9 +68,14 @@ CREATE TABLE `grades_subjects` (
 
 INSERT INTO `grades_subjects` (`id`, `grade`, `subject`) VALUES
 (2, 1, 1),
-(3, 2, 1),
+(5, 1, 2),
 (4, 1, 3),
-(5, 1, 2);
+(20, 1, 4),
+(3, 2, 1),
+(6, 2, 2),
+(22, 2, 4),
+(16, 2, 5),
+(23, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -84,9 +99,12 @@ CREATE TABLE `marks` (
 --
 
 INSERT INTO `marks` (`id`, `grade`, `student_id`, `subject`, `year`, `semester`, `month`, `mark`) VALUES
-(1, 1, 1, 2, 2024, 1, 1, 18),
-(12, 1, 2, 2, 2024, 1, 1, 20),
-(18, 2, 3, 1, 2024, 1, 1, 18);
+(1, 1, 1, 2, 2024, 1, 1, 19),
+(12, 1, 2, 2, 2024, 1, 1, 19),
+(18, 2, 3, 1, 2024, 1, 1, 18),
+(19, 2, 3, 2, 2024, 1, 1, 16),
+(28, 1, 1, 1, 2024, 1, 1, 16),
+(29, 3, 4, 4, 2024, 1, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -149,7 +167,8 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `grade`, `dob`, `gender`) VALUES
 (1, 'ali', 'kamal', 1, '2018-05-25', 1),
 (2, 'salma', 'abdallah', 1, '2018-08-22', 0),
-(3, 'ali', 'mohammad', 2, '2017-07-12', 1);
+(3, 'ali', 'mohammad', 2, '2017-07-12', 1),
+(4, 'abdallah', 'othman', 3, '2016-06-15', 1);
 
 -- --------------------------------------------------------
 
@@ -169,7 +188,9 @@ CREATE TABLE `subjects` (
 INSERT INTO `subjects` (`id`, `name`) VALUES
 (1, 'math'),
 (2, 'science'),
-(3, 'geometry');
+(3, 'geometry'),
+(4, 'Arabic'),
+(5, 'english');
 
 -- --------------------------------------------------------
 
@@ -207,7 +228,7 @@ ALTER TABLE `grades`
 --
 ALTER TABLE `grades_subjects`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `grades_grades_subjects_fk` (`grade`),
+  ADD UNIQUE KEY `grade` (`grade`,`subject`),
   ADD KEY `subject_grades_subjects_fk` (`subject`);
 
 --
@@ -215,6 +236,7 @@ ALTER TABLE `grades_subjects`
 --
 ALTER TABLE `marks`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `student_id` (`student_id`,`subject`,`year`,`semester`,`month`),
   ADD KEY `marks_students_fk` (`student_id`),
   ADD KEY `marks_semester_fk` (`semester`),
   ADD KEY `marks_month_fk` (`month`),
@@ -261,19 +283,19 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `grades_subjects`
 --
 ALTER TABLE `grades_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `months`
@@ -291,19 +313,19 @@ ALTER TABLE `semesters`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
