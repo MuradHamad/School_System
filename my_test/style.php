@@ -1,5 +1,5 @@
 <?php
-header("Content-Type: text/css");  // Set the content type to CSS
+header("Content-Type: text/css");  
 
 include("../constants.php")
     ?>
