@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($users[$username]) && password_verify($password, $users[$username])) {
         $_SESSION['username'] = $username; 
         $_SESSION['loggedin'] = true;     
-        header("Location: index.php"); 
+        header("Location: nav.php"); 
         exit();
     } else {
         $_SESSION['loggedin'] = false;
