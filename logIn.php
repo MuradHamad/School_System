@@ -9,11 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $jsonData = file_get_contents('users.json');
     $users = json_decode($jsonData, true);
-
     if (isset($users[$username]) && password_verify($password, $users[$username])) {
         $_SESSION['username'] = $username; 
         $_SESSION['loggedin'] = true;     
-        header("Location: index.php"); 
+        header("Location:page/partial/nav.html"); 
         exit();
     } else {
         $_SESSION['loggedin'] = false;
